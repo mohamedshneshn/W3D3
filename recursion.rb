@@ -121,3 +121,44 @@ end
 # p bsearch([1, 2, 3, 4, 5, 6], 0) # => nil
 # p bsearch([1, 2, 3, 4, 5, 7], 6) # => nil
 # --------------------------------------------------------------------------
+
+def merge_sort(arr)
+    return arr if arr.length <= 1
+
+    mid = arr.length / 2
+    left_side = arr[0...mid]
+    right_side = arr[mid..-1]
+
+    merge(merge_sort(left_side), merge_sort(right_side))
+
+end
+
+def merge(left, right)
+    merged = []
+    while !left.empty? && !right.empty?
+        if left.first < right.first
+            merged << left.shift
+        else
+            merged << right.shift
+        end
+    end
+    merged + left + right
+end
+
+# p merge_sort ([4,3,7,5,9,1,0,5])
+# p merge_sort ([100,50,40,200])
+
+def subsets(arr)
+    return [[]] if arr.empty?
+    prev = subsets(arr[0..-2])
+    other = prev.map { |subarr| subarr += [arr.last]}
+    prev + other
+end
+# p subsets([]) # => [[]]
+# p subsets([1]) # => [[], [1]]
+# p subsets([1, 2]) # => [[], [1], [2], [1, 2]]
+# p subsets([1, 2, 3])
+# => [[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3]]
+
+def permutation(arr)
+end
