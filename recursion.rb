@@ -26,7 +26,7 @@ def sum_array_rec(arr)
    arr[0] + sum_array_rec(arr[1..-1])
 end
 # p sum_array_iterative([1,2,3,4,5]) #15
-# -----------------------------------------------------------------------
+# ---------------------------------------------------------------------------------
 
 def exp_1(base,pow)
     return 1 if pow == 0
@@ -54,6 +54,7 @@ end
 # p exp_1(3,1)  #3
 # p exp_1(4,2)  #16
 # p exp_1(3,3)  #27
+# -------------------------------------------------------------------------------
 
 def deep_dup(arr)
     arr.map do |ele|
@@ -65,5 +66,58 @@ def deep_dup(arr)
     end
 end
 a = [1, [2], [3, [4]]]
-p deep_dup(a)
+# p deep_dup(a)
 
+# -----------------------------------------------------------------------------------
+
+def fibonacci_it(n)      #Array of fib = [0,1,1,2,3,5,8,13] 
+    return [0] if n == 1
+    return [0,1] if n==2
+    arr=[0,1]
+    (1..n-2).each do |i|
+        arr << arr[-1]+arr[-2]
+    end
+    arr
+end
+
+# p fibonacci_it(3)
+# p fibonacci_it(4)
+# p fibonacci_it(5)
+
+def fibonacci_rec(n)
+    return [0] if n == 1
+    return [0,1] if n==2
+    prev = fibonacci_rec(n-1)
+    prev << prev[-1] + prev[-2]
+end
+
+# p fibonacci_it(3)
+# p fibonacci_it(4)
+# p fibonacci_it(5)
+# --------------------------------------------------------
+
+def bsearch(arr,target)
+   return nil if arr.empty?
+
+    mid_index = arr.length / 2
+   
+   return mid_index if target == arr[mid_index]
+
+   if target < arr[mid_index]
+    bsearch(arr[0...mid_index],target) 
+   else
+    if bsearch(arr[mid_index+1..-1],target) != nil
+        bsearch(arr[mid_index+1..-1],target) + mid_index+1
+    end
+   end
+   
+end
+
+# p bsearch([1, 2, 3], 1) # => 0
+# p bsearch([2, 3, 4, 5], 3) # => 1
+# p bsearch([2, 4, 6, 8, 10], 6) # => 2
+# p  bsearch([1, 3, 4, 5, 9], 5) # => 3
+# p bsearch([1, 2, 3, 4, 5, 6], 6) # => 5
+# p bsearch([1, 2, 3, 4, 5, 6], 0) # => nil
+# p bsearch([1, 2, 3, 4, 5, 7], 6) # => nil
+# --------------------------------------------------------------------------
