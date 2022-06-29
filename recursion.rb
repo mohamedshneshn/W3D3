@@ -33,10 +33,10 @@ def exp_1(base,pow)
     base * exp_1(base,pow-1)
 end
 
-p exp_1(3,0)  #1
-p exp_1(3,1)  #3
-p exp_1(3,2)  #9
-p exp_1(3,3)  #27
+# p exp_1(3,0)  #1
+# p exp_1(3,1)  #3
+# p exp_1(3,2)  #9
+# p exp_1(3,3)  #27
 
 def exp_2(base,pow)
     return 1 if pow == 0
@@ -50,7 +50,20 @@ def exp_2(base,pow)
 
 end
 
-p exp_1(2,0)  #1
-p exp_1(3,1)  #3
-p exp_1(4,2)  #16
-p exp_1(3,3)  #27
+# p exp_1(2,0)  #1
+# p exp_1(3,1)  #3
+# p exp_1(4,2)  #16
+# p exp_1(3,3)  #27
+
+def deep_dup(arr)
+    arr.map do |ele|
+        if ele.kind_of?(Array)
+            deep_dup(ele)
+        else
+            ele
+        end
+    end
+end
+a = [1, [2], [3, [4]]]
+p deep_dup(a)
+
