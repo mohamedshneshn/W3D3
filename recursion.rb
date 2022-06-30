@@ -160,5 +160,16 @@ end
 # p subsets([1, 2, 3])
 # => [[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3]]
 
-def permutation(arr)
+def permutations(arr)
+    return [arr] if arr.length <= 1
+
+    last = arr.pop
+    prev = permutations(arr)
+    (0...arr.length).each do |i|
+        prev.each do |subarr|
+            subarr.insert(i, last)
+        end
+    end
+    prev
 end
+p permutations([1, 2, 3])
